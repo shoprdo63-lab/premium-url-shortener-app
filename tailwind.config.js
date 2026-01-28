@@ -1,1 +1,1 @@
-// Configuration moved to index.html CDN script to bypass PostCSS build errors
+// File cleared to bypass build-time PostCSS processing. Styling is handled via CDN in index.html.
