@@ -44,10 +44,10 @@ All redirections are processed through secure, encrypted tunnels to ensure that 
   };
 
   return (
-    <div className="min-h-screen bg-[#020806] text-white flex flex-col font-sans">
+    <div className="min-h-screen bg-[#020806] text-white flex flex-col font-sans relative">
       
       {/* Premium Cinematic Background Effects */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
+      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
         <div className="absolute top-[-10%] left-[-5%] w-[100vw] h-[100vw] bg-emerald-600/10 rounded-full blur-[150px] animate-pulse-slow"></div>
         <div className="absolute bottom-[-10%] right-[-5%] w-[80vw] h-[80vw] bg-teal-500/5 rounded-full blur-[150px] animate-pulse-slow delay-1000"></div>
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:50px_50px] opacity-30"></div>
@@ -55,7 +55,8 @@ All redirections are processed through secure, encrypted tunnels to ensure that 
 
       <Navbar />
       
-      <div className="flex-grow flex relative z-10 w-full max-w-7xl mx-auto px-6 items-center justify-center">
+      {/* Main container with refined spacing */}
+      <div className="flex-grow flex relative z-10 w-full max-w-7xl mx-auto px-6 pt-32 pb-20 items-center justify-center">
         <div className="grid grid-cols-1 xl:grid-cols-[200px_1fr_200px] gap-8 items-center w-full">
           
           {/* Ad Left */}
@@ -64,8 +65,8 @@ All redirections are processed through secure, encrypted tunnels to ensure that 
           </aside>
 
           {/* Main Stage */}
-          <main className="flex flex-col items-center justify-center text-center py-10">
-            <div className="w-full max-w-2xl space-y-8">
+          <main className="flex flex-col items-center justify-center text-center">
+            <div className="w-full max-w-2xl space-y-6">
               <div className="space-y-4">
                 <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 mx-auto">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
@@ -83,6 +84,7 @@ All redirections are processed through secure, encrypted tunnels to ensure that 
                 <ShortenerForm />
               </div>
 
+              {/* Bottom Marketplace Ad - Spacing reduced to sit closer to content */}
               <div className="w-full pt-4">
                 <AdPlaceholder orientation="horizontal" label="Marketplace" className="max-w-md mx-auto" />
               </div>
