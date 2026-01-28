@@ -1,1 +1,1 @@
-// File cleared to bypass build-time PostCSS processing. Styling is handled via CDN in index.html.
+// Tailwind build-time processing disabled. Configuration is in index.html.
