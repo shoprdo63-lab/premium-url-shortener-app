@@ -9,8 +9,38 @@ const App: React.FC = () => {
   const [legalType, setLegalType] = useState<'terms' | 'privacy' | null>(null);
 
   const legalContent = {
-    terms: "Linkly Terms: Use our service for legal URLs only. We provide safe, high-speed redirects.",
-    privacy: "Linkly Privacy: No PII collected. Local history only. Ad-supported via premium partners."
+    terms: `1. ACCEPTANCE OF TERMS
+By accessing and using Linkly Premium, you agree to be bound by these Terms of Service. If you do not agree to these terms, please refrain from using our infrastructure.
+
+2. PERMITTED USE
+Linkly is designed for legitimate URL optimization. Users are strictly prohibited from shortening links that point to:
+• Malware, phishing sites, or malicious software.
+• Content that violates copyright or intellectual property laws.
+• Illegal substances or prohibited regulated goods.
+• Spam or deceptive marketing materials.
+
+3. SERVICE AVAILABILITY
+While we strive for 99.9% uptime for our redirection engine, Linkly is provided "as is". We reserve the right to modify or terminate the service for any reason, without notice, at any time.
+
+4. USER RESPONSIBILITY
+You are solely responsible for the destination of the links you create. Linkly does not vet destination URLs in real-time and assumes no liability for the content found at shortened addresses.
+
+5. REDIRECTION POLICY
+We reserve the right to disable any link that receives excessive traffic which may destabilize our global network or violates our safety protocols.`,
+    privacy: `1. DATA COLLECTION ARCHITECTURE
+Linkly is built with a "Privacy First" philosophy. We do not require account creation for standard shortening, and we do not collect Personally Identifiable Information (PII) during the shortening process.
+
+2. LOCAL STORAGE USAGE
+Your link history is stored exclusively in your browser's Local Storage. This data never leaves your device and is not synced to our servers. Clearing your browser cache will remove this history.
+
+3. TELEMETRY AND ANALYTICS
+We may collect anonymous metadata regarding redirection events (e.g., timestamp, general geographic region) to improve our global routing efficiency. This data cannot be traced back to individual users.
+
+4. THIRD-PARTY PARTNERS
+Our platform features sponsored slots from premium partners. These partners may use cookies to provide relevant advertising. Please refer to their respective privacy policies for more information.
+
+5. SECURITY PROTOCOLS
+All redirections are processed through secure, encrypted tunnels to ensure that your destination remains untampered with during the transit process.`
   };
 
   return (

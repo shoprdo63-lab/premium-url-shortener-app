@@ -24,7 +24,7 @@ const LegalModal: React.FC<LegalModalProps> = ({ isOpen, onClose, title, content
             </svg>
           </button>
         </div>
-        <div className="px-12 py-12 overflow-y-auto text-emerald-100/40 text-[13px] font-medium leading-loose whitespace-pre-line custom-scrollbar">
+        <div className="px-12 py-12 overflow-y-auto text-emerald-100/60 text-[14px] font-medium leading-relaxed whitespace-pre-line custom-scrollbar">
           {content}
         </div>
         <div className="p-10 bg-white/5 border-t border-white/5 flex justify-end">
