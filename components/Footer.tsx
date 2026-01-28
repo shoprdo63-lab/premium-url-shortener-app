@@ -9,8 +9,8 @@ const Footer: React.FC<FooterProps> = ({ onOpenLegal }) => {
     <footer className="relative z-50 py-16 px-10 md:px-20 mt-auto border-t border-white/5">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
         <div className="flex flex-col items-center md:items-start space-y-2">
-          <p className="text-[10px] font-black text-emerald-400 uppercase tracking-[0.5em]">The Link Vibe Global Network</p>
-          <p className="text-emerald-100/20 text-[9px] font-medium tracking-widest uppercase">Redefining URL Optimization • © 2024</p>
+          <p className="text-[10px] font-black text-emerald-400 uppercase tracking-[0.5em]">The LinkVibe Global Network</p>
+          <p className="text-emerald-100/20 text-[9px] font-medium tracking-widest uppercase">Redefining URL Optimization • © 2026</p>
         </div>
         
         <div className="flex items-center space-x-16">

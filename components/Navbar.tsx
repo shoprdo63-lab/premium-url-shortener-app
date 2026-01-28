@@ -22,7 +22,7 @@ const Navbar: React.FC = () => {
           
           <div className="flex flex-col">
             <span className="text-2xl font-black tracking-tight text-white uppercase leading-none">
-              The <span className="text-emerald-500 italic drop-shadow-[0_0_10px_rgba(16,185,129,0.3)]">Link Vibe</span>
+              The <span className="text-emerald-500 italic drop-shadow-[0_0_10px_rgba(16,185,129,0.3)]">LinkVibe</span>
             </span>
             <div className="h-[2px] w-0 group-hover:w-full bg-emerald-500/50 transition-all duration-500 mt-1"></div>
           </div>

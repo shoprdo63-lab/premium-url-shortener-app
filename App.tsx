@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import ShortenerForm from './components/ShortenerForm';
@@ -42,36 +41,34 @@ const App: React.FC = () => {
   const [legalType, setLegalType] = useState<'terms' | 'privacy' | null>(null);
   const [showSubtitle, setShowSubtitle] = useState(false);
   const [showForm, setShowForm] = useState(false);
-  // Added isStarted state to fix reference error on line 106 and trigger entrance animations
   const [isStarted, setIsStarted] = useState(false);
 
   useEffect(() => {
-    // Small delay to trigger the entrance transition after mount
     const timer = setTimeout(() => setIsStarted(true), 100);
     return () => clearTimeout(timer);
   }, []);
 
   const legalContent = {
     terms: `1. ACCEPTANCE OF TERMS
-By accessing and using The Link Vibe Premium, you agree to be bound by these Terms of Service. If you do not agree to these terms, please refrain from using our infrastructure.
+By accessing and using The LinkVibe Premium, you agree to be bound by these Terms of Service. If you do not agree to these terms, please refrain from using our infrastructure.
 
 2. PERMITTED USE
-The Link Vibe is designed for legitimate URL optimization. Users are strictly prohibited from shortening links that point to:
+The LinkVibe is designed for legitimate URL optimization. Users are strictly prohibited from shortening links that point to:
 • Malware, phishing sites, or malicious software.
 • Content that violates copyright or intellectual property laws.
 • Illegal substances or prohibited regulated goods.
 • Spam or deceptive marketing materials.
 
 3. SERVICE AVAILABILITY
-While we strive for 99.9% uptime for our redirection engine, The Link Vibe is provided "as is". We reserve the right to modify or terminate the service for any reason, without notice, at any time.
+While we strive for 99.9% uptime for our redirection engine, The LinkVibe is provided "as is". We reserve the right to modify or terminate the service for any reason, without notice, at any time.
 
 4. USER RESPONSIBILITY
-You are solely responsible for the destination of the links you create. The Link Vibe does not vet destination URLs in real-time and assumes no liability for the content found at shortened addresses.
+You are solely responsible for the destination of the links you create. The LinkVibe does not vet destination URLs in real-time and assumes no liability for the content found at shortened addresses.
 
 5. REDIRECTION POLICY
 We reserve the right to disable any link that receives excessive traffic which may destabilize our global network or violates our safety protocols.`,
     privacy: `1. DATA COLLECTION ARCHITECTURE
-The Link Vibe is built with a "Privacy First" philosophy. We do not require account creation for standard shortening, and we do not collect Personally Identifiable Information (PII) during the shortening process.
+The LinkVibe is built with a "Privacy First" philosophy. We do not require account creation for standard shortening, and we do not collect Personally Identifiable Information (PII) during the shortening process.
 
 2. LOCAL STORAGE USAGE
 Your link history is stored exclusively in your browser's Local Storage. This data never leaves your device and is not synced to our servers. Clearing your browser cache will remove this history.
@@ -93,7 +90,7 @@ All redirections are processed through secure, encrypted tunnels to ensure that 
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
         <div className="absolute top-[-20%] left-[-10%] w-[120vw] h-[120vw] bg-emerald-600/5 rounded-full blur-[150px] animate-pulse-slow"></div>
         <div className="absolute bottom-[-20%] right-[-10%] w-[100vw] h-[100vw] bg-teal-500/5 rounded-full blur-[150px] animate-pulse-slow delay-1000"></div>
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:60px_60px] opacity-20"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:50px_50px] opacity-20"></div>
       </div>
 
       <Navbar />
@@ -120,14 +117,14 @@ All redirections are processed through secure, encrypted tunnels to ensure that 
                 {/* Typewriter Heading */}
                 <h1 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-none min-h-[1.1em] drop-shadow-2xl">
                   <Typewriter 
-                    text="The Link " 
+                    text="The Link" 
                     speed={80} 
                     delay={600} 
                   />
                   <Typewriter 
                     text="Vibe" 
                     speed={120} 
-                    delay={1800} 
+                    delay={1300} 
                     className="text-emerald-500 italic bg-clip-text"
                     onComplete={() => setShowSubtitle(true)}
                   />

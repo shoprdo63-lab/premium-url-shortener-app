@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const APP_NAME = "The Link Vibe";
+export const APP_NAME = "The LinkVibe";
 
 export const CATEGORIES = [
   "Marketing", "Social Media", "Enterprise", "Education", "Personal"
