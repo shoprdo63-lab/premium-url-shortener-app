@@ -4,10 +4,11 @@
 
 @layer base {
   body {
-    @apply bg-[#020806] text-white selection:bg-emerald-500/30 selection:text-emerald-200 font-sans;
-    scroll-behavior: smooth;
     margin: 0;
     padding: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #020806;
+    @apply antialiased overflow-x-hidden text-white;
   }
 }
 
@@ -16,9 +17,14 @@
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  @apply bg-transparent;
+  background: transparent;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  @apply bg-emerald-500/10 rounded-full hover:bg-emerald-500/20 transition-colors;
+  background: rgba(16, 185, 129, 0.1);
+  border-radius: 99px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(16, 185, 129, 0.2);
 }

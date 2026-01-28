@@ -2,13 +2,12 @@
 export default {
   content: [
     "./index.html",
-    "./**/*.{js,ts,jsx,tsx}",
+    "./App.tsx",
+    "./index.tsx",
+    "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
-      fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-      },
       colors: {
         emerald: {
           50: '#ecfdf5',
