@@ -44,7 +44,7 @@ All redirections are processed through secure, encrypted tunnels to ensure that 
   };
 
   return (
-    <div className="h-screen w-full flex flex-col bg-[#020806] text-white font-sans relative overflow-hidden">
+    <div className="min-h-screen bg-[#020806] text-white flex flex-col font-sans">
       
       {/* Premium Cinematic Background Effects */}
       <div className="fixed inset-0 z-0 pointer-events-none">
