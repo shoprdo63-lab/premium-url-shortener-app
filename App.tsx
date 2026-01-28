@@ -16,7 +16,7 @@ const App: React.FC = () => {
   return (
     <div className="h-screen w-full flex flex-col bg-[#020806] text-white font-sans relative overflow-hidden">
       
-      {/* Premium Cinematic Background */}
+      {/* Premium Cinematic Background Effects */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <div className="absolute top-[-10%] left-[-5%] w-[100vw] h-[100vw] bg-emerald-600/10 rounded-full blur-[150px] animate-pulse-slow"></div>
         <div className="absolute bottom-[-10%] right-[-5%] w-[80vw] h-[80vw] bg-teal-500/5 rounded-full blur-[150px] animate-pulse-slow delay-1000"></div>

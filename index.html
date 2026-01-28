@@ -8,12 +8,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- Tailwind CDN for instant preview reliability -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
         theme: {
           extend: {
             colors: {
+              dark: '#020806',
               emerald: {
                 50: '#ecfdf5', 100: '#d1fae5', 200: '#a7f3d0', 300: '#6ee7b7',
                 400: '#34d399', 500: '#10b981', 600: '#059669', 700: '#047857',
@@ -31,7 +33,14 @@
         }
       }
     </script>
-    <link rel="stylesheet" href="./style.css">
+    <style type="text/tailwindcss">
+      @layer base {
+        body { @apply bg-[#020806] text-white antialiased overflow-hidden; }
+      }
+      .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+      .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+      .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(16, 185, 129, 0.2); border-radius: 10px; }
+    </style>
 <script type="importmap">
 {
   "imports": {
@@ -46,6 +55,7 @@
 </head>
 <body class="bg-[#020806] h-screen overflow-hidden">
     <div id="root" class="h-full"></div>
+    <!-- Entry point for the application -->
     <script type="module" src="main.tsx"></script>
 </body>
 </html>
