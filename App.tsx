@@ -15,11 +15,12 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="h-screen w-full flex flex-col bg-[#FDFDFD] selection:bg-emerald-100 selection:text-emerald-900 font-['Inter'] relative overflow-hidden">
-      {/* Dynamic Background decor */}
+    <div className="h-screen w-full flex flex-col bg-[#020806] text-white selection:bg-emerald-500/30 selection:text-emerald-200 font-['Inter'] relative overflow-hidden">
+      {/* Dynamic Background decor - Enhanced for Dark Mode */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[-20%] left-[-10%] w-[80vw] h-[80vw] bg-emerald-50/40 rounded-full blur-[160px] animate-pulse"></div>
-        <div className="absolute bottom-[-15%] right-[-10%] w-[70vw] h-[70vw] bg-teal-50/30 rounded-full blur-[140px]"></div>
+        <div className="absolute top-[-10%] left-[-5%] w-[70vw] h-[70vw] bg-emerald-900/20 rounded-full blur-[120px] animate-pulse"></div>
+        <div className="absolute bottom-[-10%] right-[-5%] w-[60vw] h-[60vw] bg-teal-900/15 rounded-full blur-[100px]"></div>
+        <div className="absolute top-[20%] right-[10%] w-[30vw] h-[30vw] bg-emerald-500/5 rounded-full blur-[80px]"></div>
       </div>
 
       <Navbar />
@@ -37,21 +38,21 @@ const App: React.FC = () => {
           <main className="flex flex-col items-center justify-center text-center py-8">
             <div className="w-full max-w-4xl">
               {/* Status Badge */}
-              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-50/80 border border-emerald-100/60 mb-6 animate-in fade-in slide-in-from-top-4 duration-700">
+              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6 animate-in fade-in slide-in-from-top-4 duration-700">
                 <span className="relative flex h-1.5 w-1.5">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
                 </span>
-                <span className="text-[8px] font-black uppercase tracking-[0.2em] text-emerald-700">Enterprise Protocol</span>
+                <span className="text-[8px] font-black uppercase tracking-[0.2em] text-emerald-400">Enterprise Protocol</span>
               </div>
 
               <div className="mb-10">
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-gray-900 tracking-tighter leading-tight animate-in fade-in slide-in-from-bottom-4 duration-1000">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white tracking-tighter leading-tight animate-in fade-in slide-in-from-bottom-4 duration-1000">
                   Minimalist links. <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500">Fast. Pure. Simple.</span>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-emerald-300 to-teal-300">Fast. Pure. Simple.</span>
                 </h1>
                 
-                <p className="max-w-md mx-auto text-[10px] md:text-xs text-gray-400 font-bold uppercase tracking-[0.3em] mt-3 opacity-60">
+                <p className="max-w-md mx-auto text-[10px] md:text-xs text-emerald-100/40 font-bold uppercase tracking-[0.3em] mt-3 opacity-80">
                   Premium URL management. No ads, no accounts.
                 </p>
               </div>
