@@ -1,6 +1,1 @@
-export default {
-  plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
-  },
-}
+// PostCSS disabled - using Tailwind CDN
