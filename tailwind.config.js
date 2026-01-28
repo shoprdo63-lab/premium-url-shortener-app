@@ -2,9 +2,10 @@
 export default {
   content: [
     "./index.html",
-    "./App.tsx",
     "./index.tsx",
+    "./App.tsx",
     "./components/**/*.{js,ts,jsx,tsx}",
+    "./constants.tsx",
   ],
   theme: {
     extend: {
@@ -22,6 +23,9 @@ export default {
           900: '#064e3b',
           950: '#022c22',
         },
+      },
+      animation: {
+        'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
     },
   },

@@ -6,7 +6,7 @@
     <title>Linkly | Premium URL Shortener</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -19,19 +19,25 @@
                 800: '#065f46', 900: '#064e3b', 950: '#022c22',
               },
             },
-          },
-        },
+            animation: {
+              'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            },
+          }
+        }
       }
     </script>
-</head>
-<body class="bg-[#020806] text-white selection:bg-emerald-500/30">
-    <div id="root"></div>
-    <script type="importmap">
+    <style type="text/tailwindcss">
+      @layer base {
+        body { @apply bg-[#020806] text-white antialiased overflow-hidden; }
+      }
+      .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+      .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+      .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(16, 185, 129, 0.2); border-radius: 10px; }
+    </style>
+<script type="importmap">
 {
   "imports": {
-    "react": "https://esm.sh/react@19.0.0",
-    "react-dom": "https://esm.sh/react-dom@19.0.0",
-    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
+    "react": "https://esm.sh/react@^19.2.4",
     "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
     "react/": "https://esm.sh/react@^19.2.4/",
     "vite": "https://esm.sh/vite@^7.3.1",
@@ -39,6 +45,9 @@
   }
 }
 </script>
+</head>
+<body class="bg-[#020806] h-screen overflow-hidden">
+    <div id="root" class="h-full"></div>
     <script type="module" src="./index.tsx"></script>
 </body>
 </html>
