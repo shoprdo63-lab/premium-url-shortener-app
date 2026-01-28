@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import ShortenerForm from './components/ShortenerForm';
@@ -5,7 +6,7 @@ import Footer from './components/Footer';
 import LegalModal from './components/LegalModal';
 import AdPlaceholder from './components/AdPlaceholder';
 
-const Typewriter: React.FC<{ text: string; delay?: number; speed?: number; onComplete?: () => void; className?: string }> = ({ text, delay = 0, speed = 80, onComplete, className }) => {
+const Typewriter: React.FC<{ text: string; delay?: number; speed?: number; onComplete?: () => void; className?: string }> = ({ text, delay = 0, speed = 70, onComplete, className }) => {
   const [displayText, setDisplayText] = useState('');
   const [isStarted, setIsStarted] = useState(false);
 
@@ -31,7 +32,7 @@ const Typewriter: React.FC<{ text: string; delay?: number; speed?: number; onCom
     <span className={className}>
       {displayText}
       {isStarted && displayText.length < text.length && (
-        <span className="inline-block w-1 h-[0.8em] bg-emerald-500 ml-1 animate-pulse"></span>
+        <span className="inline-block w-[3px] h-[0.8em] bg-emerald-500 ml-1 animate-pulse align-middle"></span>
       )}
     </span>
   );
@@ -41,6 +42,14 @@ const App: React.FC = () => {
   const [legalType, setLegalType] = useState<'terms' | 'privacy' | null>(null);
   const [showSubtitle, setShowSubtitle] = useState(false);
   const [showForm, setShowForm] = useState(false);
+  // Added isStarted state to fix reference error on line 106 and trigger entrance animations
+  const [isStarted, setIsStarted] = useState(false);
+
+  useEffect(() => {
+    // Small delay to trigger the entrance transition after mount
+    const timer = setTimeout(() => setIsStarted(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   const legalContent = {
     terms: `1. ACCEPTANCE OF TERMS
@@ -82,67 +91,72 @@ All redirections are processed through secure, encrypted tunnels to ensure that 
       
       {/* Premium Cinematic Background Effects */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[-10%] left-[-5%] w-[100vw] h-[100vw] bg-emerald-600/10 rounded-full blur-[150px] animate-pulse-slow"></div>
-        <div className="absolute bottom-[-10%] right-[-5%] w-[80vw] h-[80vw] bg-teal-500/5 rounded-full blur-[150px] animate-pulse-slow delay-1000"></div>
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:50px_50px] opacity-30"></div>
+        <div className="absolute top-[-20%] left-[-10%] w-[120vw] h-[120vw] bg-emerald-600/5 rounded-full blur-[150px] animate-pulse-slow"></div>
+        <div className="absolute bottom-[-20%] right-[-10%] w-[100vw] h-[100vw] bg-teal-500/5 rounded-full blur-[150px] animate-pulse-slow delay-1000"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:60px_60px] opacity-20"></div>
       </div>
 
       <Navbar />
       
-      {/* Main container with refined spacing */}
-      <div className="flex-grow flex relative z-10 w-full max-w-7xl mx-auto px-6 pt-32 pb-20 items-center justify-center">
-        <div className="grid grid-cols-1 xl:grid-cols-[200px_1fr_200px] gap-8 items-center w-full">
+      {/* Main Content Area */}
+      <div className="flex-grow flex relative z-10 w-full max-w-7xl mx-auto px-6 pt-44 pb-20 items-center justify-center">
+        <div className="grid grid-cols-1 xl:grid-cols-[180px_1fr_180px] gap-12 items-center w-full">
           
-          {/* Ad Left */}
-          <aside className={`hidden xl:flex flex-col items-center transition-all duration-1000 ${showForm ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
-            <AdPlaceholder orientation="vertical" label="Ad Slot A" className="h-[500px]" />
+          {/* Ad Left - Entrance Animation */}
+          <aside className={`hidden xl:flex flex-col items-center transition-all duration-1000 ease-out ${showForm ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'}`}>
+            <AdPlaceholder orientation="vertical" label="Slot A" className="h-[600px]" />
           </aside>
 
           {/* Main Stage */}
           <main className="flex flex-col items-center justify-center text-center">
-            <div className="w-full max-w-2xl space-y-6">
-              <div className="space-y-4">
-                <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 mx-auto">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
-                  <span className="text-[9px] font-black uppercase tracking-[0.2em] text-emerald-400">Secure Protocol Active</span>
+            <div className="w-full max-w-3xl space-y-10">
+              <div className="space-y-6">
+                {/* Intro Badge */}
+                <div className={`inline-flex items-center space-x-3 px-4 py-1.5 rounded-full bg-emerald-500/5 border border-emerald-500/10 mx-auto transition-all duration-1000 ${isStarted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}>
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-emerald-400">Advanced Neural Shortening</span>
                 </div>
                 
-                <h1 className="text-5xl md:text-7xl font-black text-white tracking-tight leading-none min-h-[1.2em]">
+                {/* Typewriter Heading */}
+                <h1 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-none min-h-[1.1em] drop-shadow-2xl">
                   <Typewriter 
                     text="The Link " 
-                    speed={100} 
-                    delay={500} 
+                    speed={80} 
+                    delay={600} 
                   />
                   <Typewriter 
                     text="Vibe" 
                     speed={120} 
-                    delay={1600} 
-                    className="text-emerald-500 italic"
+                    delay={1800} 
+                    className="text-emerald-500 italic bg-clip-text"
                     onComplete={() => setShowSubtitle(true)}
                   />
                 </h1>
 
-                <div className={`transition-all duration-1000 ${showSubtitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                   <p className="text-emerald-100/30 font-medium tracking-wide text-sm max-w-md mx-auto">
-                    Elevate your digital presence with high-performance link optimization and real-time vibe checks.
+                {/* Subtitle Fade */}
+                <div className={`transition-all duration-1000 ease-out ${showSubtitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+                   <p className="text-emerald-100/30 font-medium tracking-wide text-lg max-w-xl mx-auto leading-relaxed">
+                    Optimize your links with a single click. High performance, 
+                    <span className="text-emerald-500/50"> global reach</span>, and absolute privacy.
                   </p>
                 </div>
               </div>
 
-              <div className={`w-full transition-all duration-1000 delay-500 ${showSubtitle ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`} onTransitionEnd={() => setShowForm(true)}>
+              {/* Form Entrance */}
+              <div className={`w-full transition-all duration-1000 delay-300 ${showSubtitle ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`} onTransitionEnd={() => setShowForm(true)}>
                 <ShortenerForm />
               </div>
 
-              {/* Bottom Marketplace Ad - Spacing reduced to sit closer to content */}
-              <div className={`w-full pt-4 transition-all duration-1000 delay-1000 ${showForm ? 'opacity-100' : 'opacity-0'}`}>
-                <AdPlaceholder orientation="horizontal" label="Marketplace" className="max-w-md mx-auto" />
+              {/* Bottom Marketplace Ad */}
+              <div className={`w-full pt-8 transition-all duration-1000 delay-700 ${showForm ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                <AdPlaceholder orientation="horizontal" label="Global Marketplace" className="max-w-xl mx-auto" />
               </div>
             </div>
           </main>
 
-          {/* Ad Right */}
-          <aside className={`hidden xl:flex flex-col items-center transition-all duration-1000 ${showForm ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
-            <AdPlaceholder orientation="vertical" label="Ad Slot B" className="h-[500px]" />
+          {/* Ad Right - Entrance Animation */}
+          <aside className={`hidden xl:flex flex-col items-center transition-all duration-1000 ease-out ${showForm ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-20'}`}>
+            <AdPlaceholder orientation="vertical" label="Slot B" className="h-[600px]" />
           </aside>
         </div>
       </div>
