@@ -1,7 +1,6 @@
-
 import React from 'react';
 
-export const APP_NAME = "Linkly";
+export const APP_NAME = "The Link Vibe";
 
 export const CATEGORIES = [
   "Marketing", "Social Media", "Enterprise", "Education", "Personal"

@@ -10,25 +10,25 @@ const App: React.FC = () => {
 
   const legalContent = {
     terms: `1. ACCEPTANCE OF TERMS
-By accessing and using Linkly Premium, you agree to be bound by these Terms of Service. If you do not agree to these terms, please refrain from using our infrastructure.
+By accessing and using The Link Vibe Premium, you agree to be bound by these Terms of Service. If you do not agree to these terms, please refrain from using our infrastructure.
 
 2. PERMITTED USE
-Linkly is designed for legitimate URL optimization. Users are strictly prohibited from shortening links that point to:
+The Link Vibe is designed for legitimate URL optimization. Users are strictly prohibited from shortening links that point to:
 • Malware, phishing sites, or malicious software.
 • Content that violates copyright or intellectual property laws.
 • Illegal substances or prohibited regulated goods.
 • Spam or deceptive marketing materials.
 
 3. SERVICE AVAILABILITY
-While we strive for 99.9% uptime for our redirection engine, Linkly is provided "as is". We reserve the right to modify or terminate the service for any reason, without notice, at any time.
+While we strive for 99.9% uptime for our redirection engine, The Link Vibe is provided "as is". We reserve the right to modify or terminate the service for any reason, without notice, at any time.
 
 4. USER RESPONSIBILITY
-You are solely responsible for the destination of the links you create. Linkly does not vet destination URLs in real-time and assumes no liability for the content found at shortened addresses.
+You are solely responsible for the destination of the links you create. The Link Vibe does not vet destination URLs in real-time and assumes no liability for the content found at shortened addresses.
 
 5. REDIRECTION POLICY
 We reserve the right to disable any link that receives excessive traffic which may destabilize our global network or violates our safety protocols.`,
     privacy: `1. DATA COLLECTION ARCHITECTURE
-Linkly is built with a "Privacy First" philosophy. We do not require account creation for standard shortening, and we do not collect Personally Identifiable Information (PII) during the shortening process.
+The Link Vibe is built with a "Privacy First" philosophy. We do not require account creation for standard shortening, and we do not collect Personally Identifiable Information (PII) during the shortening process.
 
 2. LOCAL STORAGE USAGE
 Your link history is stored exclusively in your browser's Local Storage. This data never leaves your device and is not synced to our servers. Clearing your browser cache will remove this history.
@@ -61,7 +61,7 @@ All redirections are processed through secure, encrypted tunnels to ensure that 
           
           {/* Ad Left */}
           <aside className="hidden xl:flex flex-col items-center">
-            <AdPlaceholder orientation="vertical" label="Partner A" className="h-[500px]" />
+            <AdPlaceholder orientation="vertical" label="Ad Slot A" className="h-[500px]" />
           </aside>
 
           {/* Main Stage */}
@@ -72,11 +72,11 @@ All redirections are processed through secure, encrypted tunnels to ensure that 
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
                   <span className="text-[9px] font-black uppercase tracking-[0.2em] text-emerald-400">Secure Protocol Active</span>
                 </div>
-                <h1 className="text-5xl md:text-6xl font-black text-white tracking-tight leading-none">
-                  Linkly <span className="text-emerald-500 italic">Premium</span>
+                <h1 className="text-5xl md:text-7xl font-black text-white tracking-tight leading-none">
+                  The Link<span className="text-emerald-500 italic">Vibe</span>
                 </h1>
-                <p className="text-emerald-100/30 font-medium tracking-wide text-sm">
-                  The professional standard for link optimization.
+                <p className="text-emerald-100/30 font-medium tracking-wide text-sm max-w-md mx-auto">
+                  Elevate your digital presence with high-performance link optimization and real-time vibe checks.
                 </p>
               </div>
 
@@ -93,7 +93,7 @@ All redirections are processed through secure, encrypted tunnels to ensure that 
 
           {/* Ad Right */}
           <aside className="hidden xl:flex flex-col items-center">
-            <AdPlaceholder orientation="vertical" label="Partner B" className="h-[500px]" />
+            <AdPlaceholder orientation="vertical" label="Ad Slot B" className="h-[500px]" />
           </aside>
         </div>
       </div>
