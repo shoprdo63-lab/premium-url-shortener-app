@@ -1,12 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import ShortenerForm from './components/ShortenerForm';
 import Footer from './components/Footer';
 import LegalModal from './components/LegalModal';
 import AdPlaceholder from './components/AdPlaceholder';
 
+const Typewriter: React.FC<{ text: string; delay?: number; speed?: number; onComplete?: () => void; className?: string }> = ({ text, delay = 0, speed = 80, onComplete, className }) => {
+  const [displayText, setDisplayText] = useState('');
+  const [isStarted, setIsStarted] = useState(false);
+
+  useEffect(() => {
+    const startTimeout = setTimeout(() => setIsStarted(true), delay);
+    return () => clearTimeout(startTimeout);
+  }, [delay]);
+
+  useEffect(() => {
+    if (!isStarted) return;
+
+    if (displayText.length < text.length) {
+      const timeout = setTimeout(() => {
+        setDisplayText(text.slice(0, displayText.length + 1));
+      }, speed);
+      return () => clearTimeout(timeout);
+    } else if (onComplete) {
+      onComplete();
+    }
+  }, [displayText, isStarted, text, speed, onComplete]);
+
+  return (
+    <span className={className}>
+      {displayText}
+      {isStarted && displayText.length < text.length && (
+        <span className="inline-block w-1 h-[0.8em] bg-emerald-500 ml-1 animate-pulse"></span>
+      )}
+    </span>
+  );
+};
+
 const App: React.FC = () => {
   const [legalType, setLegalType] = useState<'terms' | 'privacy' | null>(null);
+  const [showSubtitle, setShowSubtitle] = useState(false);
+  const [showForm, setShowForm] = useState(false);
 
   const legalContent = {
     terms: `1. ACCEPTANCE OF TERMS
@@ -60,7 +94,7 @@ All redirections are processed through secure, encrypted tunnels to ensure that 
         <div className="grid grid-cols-1 xl:grid-cols-[200px_1fr_200px] gap-8 items-center w-full">
           
           {/* Ad Left */}
-          <aside className="hidden xl:flex flex-col items-center">
+          <aside className={`hidden xl:flex flex-col items-center transition-all duration-1000 ${showForm ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
             <AdPlaceholder orientation="vertical" label="Ad Slot A" className="h-[500px]" />
           </aside>
 
@@ -72,27 +106,42 @@ All redirections are processed through secure, encrypted tunnels to ensure that 
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
                   <span className="text-[9px] font-black uppercase tracking-[0.2em] text-emerald-400">Secure Protocol Active</span>
                 </div>
-                <h1 className="text-5xl md:text-7xl font-black text-white tracking-tight leading-none">
-                  The Link<span className="text-emerald-500 italic">Vibe</span>
+                
+                <h1 className="text-5xl md:text-7xl font-black text-white tracking-tight leading-none min-h-[1.2em]">
+                  <Typewriter 
+                    text="The Link " 
+                    speed={100} 
+                    delay={500} 
+                  />
+                  <Typewriter 
+                    text="Vibe" 
+                    speed={120} 
+                    delay={1600} 
+                    className="text-emerald-500 italic"
+                    onComplete={() => setShowSubtitle(true)}
+                  />
                 </h1>
-                <p className="text-emerald-100/30 font-medium tracking-wide text-sm max-w-md mx-auto">
-                  Elevate your digital presence with high-performance link optimization and real-time vibe checks.
-                </p>
+
+                <div className={`transition-all duration-1000 ${showSubtitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                   <p className="text-emerald-100/30 font-medium tracking-wide text-sm max-w-md mx-auto">
+                    Elevate your digital presence with high-performance link optimization and real-time vibe checks.
+                  </p>
+                </div>
               </div>
 
-              <div className="w-full">
+              <div className={`w-full transition-all duration-1000 delay-500 ${showSubtitle ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`} onTransitionEnd={() => setShowForm(true)}>
                 <ShortenerForm />
               </div>
 
               {/* Bottom Marketplace Ad - Spacing reduced to sit closer to content */}
-              <div className="w-full pt-4">
+              <div className={`w-full pt-4 transition-all duration-1000 delay-1000 ${showForm ? 'opacity-100' : 'opacity-0'}`}>
                 <AdPlaceholder orientation="horizontal" label="Marketplace" className="max-w-md mx-auto" />
               </div>
             </div>
           </main>
 
           {/* Ad Right */}
-          <aside className="hidden xl:flex flex-col items-center">
+          <aside className={`hidden xl:flex flex-col items-center transition-all duration-1000 ${showForm ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
             <AdPlaceholder orientation="vertical" label="Ad Slot B" className="h-[500px]" />
           </aside>
         </div>
