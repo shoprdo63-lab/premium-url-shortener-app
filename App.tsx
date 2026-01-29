@@ -31,7 +31,7 @@ const Typewriter: React.FC<{ text: string; delay?: number; speed?: number; onCom
     <span className={className}>
       {displayText}
       {isStarted && displayText.length < text.length && (
-        <span className="inline-block w-[3px] h-[0.8em] bg-emerald-500 ml-1 animate-pulse align-middle"></span>
+        <span className="inline-block w-[3px] h-[0.8em] bg-emerald-500 ml-1 animate-pulse align-middle shadow-[0_0_10px_#10b981]"></span>
       )}
     </span>
   );
@@ -84,38 +84,51 @@ All redirections are processed through secure, encrypted tunnels to ensure that 
   };
 
   return (
-    <div className="min-h-screen bg-[#020806] text-white flex flex-col font-sans relative">
+    <div className="min-h-screen bg-[#020806] text-white flex flex-col font-sans relative overflow-x-hidden selection:bg-emerald-500/30 selection:text-emerald-200">
       
       {/* Premium Cinematic Background Effects */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[-20%] left-[-10%] w-[120vw] h-[120vw] bg-emerald-600/5 rounded-full blur-[150px] animate-pulse-slow"></div>
-        <div className="absolute bottom-[-20%] right-[-10%] w-[100vw] h-[100vw] bg-teal-500/5 rounded-full blur-[150px] animate-pulse-slow delay-1000"></div>
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:50px_50px] opacity-20"></div>
+        {/* Subtle Noise Texture */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E")' }}></div>
+        
+        {/* Animated Gradient Orbs */}
+        <div className="absolute top-[-10%] left-[-10%] w-[80vw] h-[80vw] bg-emerald-900/10 rounded-full blur-[120px] animate-pulse-slow"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[80vw] h-[80vw] bg-teal-900/10 rounded-full blur-[120px] animate-pulse-slow delay-1000"></div>
+        <div className="absolute top-[20%] right-[10%] w-[40vw] h-[40vw] bg-emerald-600/5 rounded-full blur-[100px] animate-pulse delay-2000 duration-[10s]"></div>
+        
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)]"></div>
       </div>
 
       <Navbar />
       
       {/* Main Content Area */}
       <div className="flex-grow flex relative z-10 w-full max-w-7xl mx-auto px-6 pt-44 pb-20 items-center justify-center">
-        <div className="grid grid-cols-1 xl:grid-cols-[180px_1fr_180px] gap-12 items-center w-full">
+        <div className="grid grid-cols-1 xl:grid-cols-[200px_1fr_200px] gap-8 items-center w-full">
           
           {/* Ad Left - Entrance Animation */}
           <aside className={`hidden xl:flex flex-col items-center transition-all duration-1000 ease-out ${showForm ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'}`}>
-            <AdPlaceholder orientation="vertical" label="Slot A" className="h-[600px]" />
+            <AdPlaceholder orientation="vertical" label="Partner A" className="h-[600px] hover:scale-[1.02] duration-500" />
           </aside>
 
           {/* Main Stage */}
-          <main className="flex flex-col items-center justify-center text-center">
-            <div className="w-full max-w-3xl space-y-10">
+          <main className="flex flex-col items-center justify-center text-center relative">
+            {/* Background Glow for Main Stage */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-emerald-500/5 blur-[80px] rounded-full pointer-events-none"></div>
+
+            <div className="w-full max-w-3xl space-y-10 relative z-10">
               <div className="space-y-6">
                 {/* Intro Badge */}
-                <div className={`inline-flex items-center space-x-3 px-4 py-1.5 rounded-full bg-emerald-500/5 border border-emerald-500/10 mx-auto transition-all duration-1000 ${isStarted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}>
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-emerald-400">Advanced Neural Shortening</span>
+                <div className={`group cursor-default inline-flex items-center space-x-3 px-5 py-2 rounded-full bg-white/5 border border-white/10 hover:border-emerald-500/30 hover:bg-emerald-500/5 mx-auto transition-all duration-1000 ${isStarted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}>
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  </span>
+                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-emerald-100/70 group-hover:text-emerald-400 transition-colors">Advanced Neural Shortening</span>
                 </div>
                 
                 {/* Typewriter Heading */}
-                <h1 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-none min-h-[1.1em] drop-shadow-2xl">
+                <h1 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-none min-h-[1.1em] drop-shadow-[0_0_30px_rgba(255,255,255,0.1)]">
                   <Typewriter 
                     text="The Link" 
                     speed={80} 
@@ -125,16 +138,16 @@ All redirections are processed through secure, encrypted tunnels to ensure that 
                     text="Vibe" 
                     speed={120} 
                     delay={1300} 
-                    className="text-emerald-500 italic bg-clip-text"
+                    className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400 italic"
                     onComplete={() => setShowSubtitle(true)}
                   />
                 </h1>
 
                 {/* Subtitle Fade */}
                 <div className={`transition-all duration-1000 ease-out ${showSubtitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-                   <p className="text-emerald-100/30 font-medium tracking-wide text-lg max-w-xl mx-auto leading-relaxed">
+                   <p className="text-emerald-100/40 font-medium tracking-wide text-lg max-w-xl mx-auto leading-relaxed">
                     Optimize your links with a single click. High performance, 
-                    <span className="text-emerald-500/50"> global reach</span>, and absolute privacy.
+                    <span className="text-emerald-400/80 decoration-emerald-500/30 underline underline-offset-4 decoration-2"> global reach</span>, and absolute privacy.
                   </p>
                 </div>
               </div>
@@ -146,14 +159,14 @@ All redirections are processed through secure, encrypted tunnels to ensure that 
 
               {/* Bottom Marketplace Ad */}
               <div className={`w-full pt-8 transition-all duration-1000 delay-700 ${showForm ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                <AdPlaceholder orientation="horizontal" label="Global Marketplace" className="max-w-xl mx-auto" />
+                <AdPlaceholder orientation="horizontal" label="Global Marketplace" className="max-w-xl mx-auto hover:scale-[1.02] duration-500" />
               </div>
             </div>
           </main>
 
           {/* Ad Right - Entrance Animation */}
           <aside className={`hidden xl:flex flex-col items-center transition-all duration-1000 ease-out ${showForm ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-20'}`}>
-            <AdPlaceholder orientation="vertical" label="Slot B" className="h-[600px]" />
+            <AdPlaceholder orientation="vertical" label="Partner B" className="h-[600px] hover:scale-[1.02] duration-500" />
           </aside>
         </div>
       </div>
