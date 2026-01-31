@@ -9,7 +9,7 @@ const ShortenerForm: React.FC = () => {
   const [copyStatus, setCopyStatus] = useState<string | null>(null);
 
   useEffect(() => {
-    const saved = localStorage.getItem('linkly_history');
+    const saved = localStorage.getItem('linkvibe_history');
     if (saved) {
       try {
         setHistory(JSON.parse(saved));
@@ -17,11 +17,23 @@ const ShortenerForm: React.FC = () => {
     }
   }, []);
 
-  const shortenUrl = async (longUrl: string): Promise<string> => {
-    const response = await fetch(`https://is.gd/create.php?format=json&url=${encodeURIComponent(longUrl)}`);
-    const data = await response.json();
-    if (data.errormessage) throw new Error(data.errormessage);
-    return data.shorturl;
+  const generateShortCode = () => {
+    return Math.random().toString(36).substring(2, 8);
+  };
+
+  const shortenUrl = async (longUrl: string): Promise<{ short: string, id: string }> => {
+    // Simulate network delay for "processing" feel
+    await new Promise(resolve => setTimeout(resolve, 800));
+    
+    const code = generateShortCode();
+    // In a real app, this would verify uniqueness against a DB
+    
+    // Store in "Database" (LocalStorage for simulation) to enable redirection
+    localStorage.setItem(`lv_${code}`, longUrl);
+    
+    // Construct local URL
+    const shortUrl = `${window.location.origin}/?v=${code}`;
+    return { short: shortUrl, id: code };
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -34,20 +46,21 @@ const ShortenerForm: React.FC = () => {
     setError(null);
     
     try {
-      const shortened = await shortenUrl(targetUrl);
+      const { short, id } = await shortenUrl(targetUrl);
+      
       const newLink: ShortenedLink = {
-        id: Math.random().toString(36).substr(2, 9),
+        id: id,
         original: targetUrl,
-        short: shortened,
+        short: short,
         createdAt: new Date(),
       };
       
-      const updatedHistory = [newLink, ...history].slice(0, 3);
+      const updatedHistory = [newLink, ...history].slice(0, 5); // Keep last 5
       setHistory(updatedHistory);
-      localStorage.setItem('linkly_history', JSON.stringify(updatedHistory));
+      localStorage.setItem('linkvibe_history', JSON.stringify(updatedHistory));
       setUrl('');
     } catch (err) {
-      setError('Service is currently busy. Try again shortly.');
+      setError('System busy. Please try again.');
     } finally {
       setIsShortening(false);
     }
@@ -117,8 +130,8 @@ const ShortenerForm: React.FC = () => {
                     <span className="text-[10px] font-black text-emerald-800 uppercase tracking-widest">Link Generated</span>
                     <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
                  </div>
-                 <h3 className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-[#10b981] to-[#047857] tracking-tight mb-2 truncate max-w-sm md:max-w-md drop-shadow-sm">
-                   {latestLink.short.replace('https://', '')}
+                 <h3 className="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-br from-[#10b981] to-[#047857] tracking-tight mb-2 truncate max-w-sm md:max-w-md drop-shadow-sm">
+                   {latestLink.short.replace(/^https?:\/\//, '')}
                  </h3>
                  <p className="text-xs text-gray-400 truncate max-w-[250px] md:max-w-md font-semibold font-mono bg-gray-100 px-2 py-1 rounded inline-block">{latestLink.original}</p>
               </div>
@@ -135,7 +148,7 @@ const ShortenerForm: React.FC = () => {
                  ) : (
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
                  )}
-                <span>{copyStatus === latestLink.id ? 'COPIED' : 'COPY LINK'}</span>
+                <span>{copyStatus === latestLink.id ? 'COPIED!' : 'COPY LINK'}</span>
               </button>
            </div>
         </div>
@@ -160,7 +173,7 @@ const ShortenerForm: React.FC = () => {
                       <svg className="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101" /></svg>
                     </div>
                     <div>
-                        <p className="text-emerald-400 font-black text-sm group-hover:text-emerald-300 transition-colors">{link.short.replace('https://', '')}</p>
+                        <p className="text-emerald-400 font-black text-sm group-hover:text-emerald-300 transition-colors">{link.short.replace(/^https?:\/\//, '')}</p>
                         <p className="text-[10px] text-emerald-100/30 truncate max-w-[200px] md:max-w-sm font-medium">{link.original}</p>
                     </div>
                   </div>
@@ -169,7 +182,7 @@ const ShortenerForm: React.FC = () => {
                     className={`p-3 rounded-xl transition-all ${copyStatus === link.id ? 'bg-emerald-500/20 text-emerald-400' : 'text-emerald-500/30 hover:text-emerald-400 hover:bg-emerald-500/10'}`}
                   >
                     {copyStatus === link.id ? (
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                        <span className="text-[10px] font-bold">COPIED</span>
                     ) : (
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
                     )}

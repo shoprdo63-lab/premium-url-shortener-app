@@ -1,12 +1,12 @@
 import React from 'react';
 
 interface FooterProps {
-  onOpenLegal: (type: 'terms' | 'privacy' | 'about' | 'contact') => void;
+  onOpenLegal: (type: 'terms' | 'privacy' | 'about' | 'contact' | 'abuse') => void;
 }
 
 const Footer: React.FC<FooterProps> = ({ onOpenLegal }) => {
   return (
-    <footer className="relative z-50 py-16 px-6 md:px-20 mt-auto border-t border-white/5">
+    <footer className="relative z-50 py-16 px-6 md:px-20 mt-auto border-t border-white/5 bg-[#020806]">
       <div className="max-w-7xl mx-auto flex flex-col xl:flex-row justify-between items-center gap-10 text-center xl:text-left">
         <div className="flex flex-col items-center xl:items-start space-y-2">
           <p className="text-[10px] font-black text-emerald-400 uppercase tracking-[0.5em]">The LinkVibe Global Network</p>
@@ -17,27 +17,33 @@ const Footer: React.FC<FooterProps> = ({ onOpenLegal }) => {
           <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
             <button 
               onClick={() => onOpenLegal('about')} 
-              className="text-[10px] font-black text-emerald-100/30 hover:text-emerald-400 transition-all uppercase tracking-[0.4em]"
+              className="text-[10px] font-black text-emerald-100/30 hover:text-emerald-400 transition-all uppercase tracking-[0.2em]"
             >
               About
             </button>
              <button 
               onClick={() => onOpenLegal('contact')} 
-              className="text-[10px] font-black text-emerald-100/30 hover:text-emerald-400 transition-all uppercase tracking-[0.4em]"
+              className="text-[10px] font-black text-emerald-100/30 hover:text-emerald-400 transition-all uppercase tracking-[0.2em]"
             >
               Contact
             </button>
             <button 
               onClick={() => onOpenLegal('terms')} 
-              className="text-[10px] font-black text-emerald-100/30 hover:text-emerald-400 transition-all uppercase tracking-[0.4em]"
+              className="text-[10px] font-black text-emerald-100/30 hover:text-emerald-400 transition-all uppercase tracking-[0.2em]"
             >
               Terms
             </button>
             <button 
               onClick={() => onOpenLegal('privacy')} 
-              className="text-[10px] font-black text-emerald-100/30 hover:text-emerald-400 transition-all uppercase tracking-[0.4em]"
+              className="text-[10px] font-black text-emerald-100/30 hover:text-emerald-400 transition-all uppercase tracking-[0.2em]"
             >
               Privacy
+            </button>
+            <button 
+              onClick={() => onOpenLegal('abuse')} 
+              className="text-[10px] font-black text-rose-500/50 hover:text-rose-400 transition-all uppercase tracking-[0.2em]"
+            >
+              Report Abuse
             </button>
           </div>
           

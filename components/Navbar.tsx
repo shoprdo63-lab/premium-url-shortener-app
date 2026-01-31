@@ -31,12 +31,8 @@ const Navbar: React.FC = () => {
         <div className="hidden md:flex items-center space-x-6">
            <div className="flex flex-col items-end">
               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-emerald-500 text-shadow-sm">Premium Protocol</span>
-              <span className="text-[8px] font-medium text-emerald-500/40 uppercase tracking-widest mt-0.5">EST. 2024 • STABLE V2.1</span>
+              <span className="text-[8px] font-medium text-emerald-500/40 uppercase tracking-widest mt-0.5">EST. 2024 • SYSTEM STABLE</span>
            </div>
-           <div className="w-10 h-[1px] bg-emerald-500/20 rotate-90"></div>
-           <button className="px-6 py-2.5 bg-emerald-500/5 hover:bg-emerald-500/10 border border-emerald-500/20 hover:border-emerald-500/40 rounded-full text-[10px] font-black uppercase tracking-widest text-emerald-400 transition-all hover:scale-105 active:scale-95 hover:shadow-[0_0_20px_rgba(16,185,129,0.1)]">
-             API Access
-           </button>
         </div>
       </div>
     </nav>
