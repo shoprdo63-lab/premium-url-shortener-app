@@ -17,22 +17,36 @@ const ShortenerForm: React.FC = () => {
     }
   }, []);
 
-  const generateShortCode = () => {
-    return Math.random().toString(36).substring(2, 8);
+  // Professional Base62 generator - Optimized for 6 characters
+  // מחולל מקצועי - מיועד ל-6 תווים למראה נקי
+  const generateShortId = (length: number = 6) => {
+    const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let result = '';
+    for (let i = 0; i < length; i++) {
+      result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
   };
 
   const shortenUrl = async (longUrl: string): Promise<{ short: string, id: string }> => {
     // Simulate network delay for "processing" feel
     await new Promise(resolve => setTimeout(resolve, 800));
     
-    const code = generateShortCode();
-    // In a real app, this would verify uniqueness against a DB
+    // WORLD-CLASS SHORTENING LOGIC:
+    // We use a 6-character ID which is the industry standard (like Bitly).
+    // This is short enough for Ads but unique enough to avoid collisions.
+    let code = generateShortId(6);
     
-    // Store in "Database" (LocalStorage for simulation) to enable redirection
+    // Ensure unique ID by checking localStorage
+    while (localStorage.getItem(`lv_${code}`)) {
+      code = generateShortId(6);
+    }
+    
+    // Store the mapping in "Database" (localStorage)
     localStorage.setItem(`lv_${code}`, longUrl);
     
-    // Construct local URL
-    const shortUrl = `${window.location.origin}/?v=${code}`;
+    // Construct local URL with the cleanest path (no query parameters)
+    const shortUrl = `${window.location.origin}/${code}`;
     return { short: shortUrl, id: code };
   };
 
@@ -40,6 +54,8 @@ const ShortenerForm: React.FC = () => {
     e.preventDefault();
     let targetUrl = url.trim();
     if (!targetUrl) return;
+    
+    // Ensure protocol exists
     if (!/^https?:\/\//i.test(targetUrl)) targetUrl = 'https://' + targetUrl;
 
     setIsShortening(true);
@@ -121,11 +137,11 @@ const ShortenerForm: React.FC = () => {
       {latestLink && (
         <div className="w-full mb-12 animate-in fade-in zoom-in-95 duration-500">
            <div className="relative bg-gradient-to-br from-white to-emerald-50 rounded-[2.8rem] p-10 flex flex-col md:flex-row items-center justify-between gap-8 shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-4 border-white/5 ring-1 ring-emerald-500/10 group overflow-hidden">
-              
-              {/* Shine effect */}
-              <div className="absolute top-0 -left-[100%] w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12 group-hover:animate-[shine_1.5s_ease-in-out_infinite]" />
-              
-              <div className="text-left w-full md:w-auto relative z-10">
+             
+             {/* Shine effect */}
+             <div className="absolute top-0 -left-[100%] w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12 group-hover:animate-[shine_1.5s_ease-in-out_infinite]" />
+             
+             <div className="text-left w-full md:w-auto relative z-10">
                  <div className="inline-flex items-center space-x-2 bg-emerald-100/50 px-3 py-1.5 rounded-full mb-4 border border-emerald-200">
                     <span className="text-[10px] font-black text-emerald-800 uppercase tracking-widest">Link Generated</span>
                     <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>

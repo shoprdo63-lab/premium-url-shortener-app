@@ -58,12 +58,16 @@ const App: React.FC = () => {
 
   // Redirect Logic
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const vibeCode = params.get('v');
+    // Check path for short code (remove leading slash)
+    const path = window.location.pathname.slice(1);
     
-    if (vibeCode) {
+    // Validate format: 1 to 6 alphanumeric characters (Base62)
+    // Updated to allow 1 char for shortest possible URLs
+    const isShortLink = /^[a-zA-Z0-9]{1,6}$/.test(path);
+    
+    if (isShortLink) {
       setIsRedirecting(true);
-      const originalUrl = localStorage.getItem(`lv_${vibeCode}`);
+      const originalUrl = localStorage.getItem(`lv_${path}`);
       
       if (originalUrl) {
         // Simulate "Security Scan" delay
