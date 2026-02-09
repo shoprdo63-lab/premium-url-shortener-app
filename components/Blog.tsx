@@ -8,7 +8,8 @@ const BLOG_POSTS = [
     title: "Mastering the URL Redirection Strategy for Modern SEO",
     excerpt: "Why the technical architecture of your short links determines your search engine visibility and long-term brand equity.",
     content: `
-      In the competitive landscape of digital search, every signal counts. When you share a link, you aren't just moving traffic—אתה מעביר סמכות דיגיטלית (you are transferring digital authority). This is why a professional redirection strategy is a cornerstone of SEO.
+      In the competitive landscape of digital search, every signal counts. When you share a link, you aren't just moving traffic—You are transferring digital authority.
+(you are transferring digital authority). This is why a professional redirection strategy is a cornerstone of SEO.
 
       At The LinkVibe, we implement a 'Pure-301' redirection protocol. In technical terms, a 301 redirect is a permanent move. It signals to search engine crawlers that all the 'link juice' and ranking power of the short URL should be attributed to the destination site. This is critical for businesses that share content across social media platforms like X, LinkedIn, and Facebook.
 
